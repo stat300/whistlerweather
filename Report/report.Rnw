@@ -1,18 +1,23 @@
 \documentclass[12pt,twoside]{article}
 
+\usepackage[utf8]{inputenc}
 \usepackage{template}
+\usepackage{lipsum}
+
+\usepackage{apacite}
+\bibliographystyle{apacite}
 
 \begin{document}
 \SweaveOpts{concordance=TRUE}
 
-%\include{titlepage}
+\include{titlepage}
 
-\thispagestyle{firststyle}
-\noindent
-{\Large \textbf{Analysis of Whistler Weather Data}} 
-
-\medskip\noindent
-{\large \textsl{by Benjamin Chan, Ethan Sim and Nathan Esau}}
+%\thispagestyle{firststyle}
+%\noindent
+%{\Large \textbf{Analysis of Whistler Weather Data}} 
+%
+%\medskip\noindent
+{%\large \textsl{by Benjamin Chan, Ethan Sim and Nathan Esau}}
 
 \section{Summary}
 
@@ -42,13 +47,208 @@ By averaging the different annual time series, we determined a typical length of
 
 These two approaches produced similar results. Under each approach, we found that the 2009--2010 winter was less severe then other winters and that the 2013--2014 winter was shorter than other winters. We also found that the amount of snowfall is correlated with how cold the winter is.
 
-\pagebreak
-
 \section{Introduction}
 
-Our overall goal was to understand the time series shown in Figure 1.
+Our overall goal was to understand the time series shown in Figure \ref{fig:basicts}.
 
-<<echo=FALSE, fig=TRUE
+<<echo=FALSE, fig=FALSE, label=basicts>>=
+library(lattice)
+library(latticeExtra)
+library(zoo)
+load("~/Documents/GitHub/whistlerweather/Data/weather_data.Rdata")
+load("~/Documents/GitHub/whistlerweather/Data/average_ts.Rdata")
+load(file="~/Documents/GitHub/whistlerweather/Data/summary_table.Rdata")
 
+weather_data.ts <- zoo(weather_data[,c(5,9)], weather_data$date)
+names(weather_data.ts) = c("Average Temperature", 
+                           "Snow on ground")
+p <- xyplot(weather_data.ts,ylab=c("Snow on ground (cm)",
+                                   "Temperature (celsius)"))
+p
+@
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{report-basicts}
+\end{center}
+\caption{Whistler weather data from 2006 -- 2014}
+\label{fig:basicts}
+\end{figure}
+
+Whistler Blackcomb is a Canadian resort town in the province of British Columbia, Canada, one of the largest ski resorts in North America. Whistler’s economy is highly dependent on the seasonality of snow as the main activities offered are skiing and snowboarding. In July 2003, Whistler was selected as the winning bid for the 2010 Winter Olympics to host the alpine skiing events. However, 2010 was accompanied with an unusually mild winter, setting an alarming lack of snow coverage for the smooth running of the Winter Olympics activities. Given such uncertainty, it would be helpful to have a rough estimate of when the winter season would be starting and the peak time of snowfall.
+
+This paper establishes an exploratory data analysis on estimating the start and length of the winter season, as well as the peak of the snowfall. 
+
+% Where we got it 
+% How how we have it
+% Imputation; changes to data
+
+\section{Methods}
+%
+%% Assumptions
+%% Trend
+%
+The trend for snowfall is shown in Figure \ref{fig:snowtrend}. \lipsum[1]
+
+<<echo=FALSE, fig=FALSE, label=snowtrend>>=
+pobj <- zoo(weather_data$snow_ground, weather_data$date)
+plot(pobj, xlab="Date", ylab="Snow on ground (cm)")
+x <- as.numeric(weather_data$date)
+snowmodel <- lm(weather_data$snow_ground[1:3285] ~ x)
+abline(snowmodel,col='red')
+@
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{report-snowtrend}
+\end{center}
+\caption{Snowfall trend with regression line}
+\label{fig:snowtrend}
+\end{figure}
+
+The trend for temperature is shown in Figure \ref{fig:temptrend}. \lipsum[2]
+
+<<echo=FALSE, fig=FALSE, label=temptrend>>=
+pobj <- zoo(weather_data$mean_temp, weather_data$date)
+plot(pobj, xlab="Date", ylab="Mean temperature during day")
+x <- as.numeric(weather_data$date)
+model <- lm(weather_data$mean_temp[1:3285] ~ x)
+abline(model, col='red')
+@
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{report-temptrend}
+\end{center}
+\caption{Temperature trend with regression line}
+\label{fig:temptrend}
+\end{figure}
+
+The average time series are shown in Figure \ref{fig:averagetsplot}. \lipsum[3]
+
+<<echo=FALSE, fig=FALSE, label=averagetsplot>>=
+plot(season.avgsnow, type='l', ylim=c(0,max(season.maxsnow)),
+     axes=FALSE, xlab="Date", ylab="Snow on ground (cm)")
+lines(season.minsnow, type='l', col='red')
+lines(season.maxsnow, type='l', col='blue')
+axis(2)
+box()
+axis(1,at=c(30,120,210,300),labels=c("Feb","May","Aug","Nov"))
+@
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{report-averagetsplot}
+\end{center}
+\caption{Average, min, max}
+\label{fig:averagetsplot}
+\end{figure}
+
+The length of winter is shown in Figure \ref{fig:lengthwinter}. \lipsum[4]
+
+<<echo=FALSE, fig=FALSE, label=lengthwinter>>=
+mav <- function(x,n=5){filter(x,rep(1/n,n), sides=2)}
+
+x <- ts(mav(impsnow, 7))
+y <- diff(which(x>10))
+t2 <- diff(which(y>60))
+
+start_winter.snow <- (which(x>10)[which(y>60)+1]-3)[1:8]
+end_winter.snow <- start_winter.snow + t2
+start_winter.snow.date <- weather_data$date[start_winter.snow]
+end_winter.snow.date <- weather_data$date[end_winter.snow]
+
+barplot(matrix(c(t2), 
+               nrow=1, byrow=TRUE), ylab="Length of winter", cex.axis = 0.8, beside=T,
+        col=c("black"), ylim=c(0,175))
+axis(1,at=seq(1.55,9.5*1.63,length.out = 8), labels=seq(2007,2014,1), cex.axis=0.8)
+box()
+@
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{report-lengthwinter}
+\end{center}
+\caption{Length of winter}
+\label{fig:lengthwinter}
+\end{figure}
+
+The average snow is shown in Figure \ref{fig:averagesnow}. \lipsum[5]
+
+<<echo=FALSE, fig=FALSE, label=averagesnow>>=
+snowfall_average.snow <- numeric(8)
+peak_snow.snow <- numeric(8)
+peak_snow.date.snow <- as.Date(rep("2000-01-01",8))
+temperature_average.snow <- numeric(8)
+
+for(i in 1:8) {
+  c <-  (weather_data$date > start_winter.snow.date[i]) * 
+    (weather_data$date <= end_winter.snow.date[i])
+  snow <- weather_data$snow_ground[which(c==1)]
+  temp <- weather_data$mean_temp[which(c==1)]
+  snowfall_average.snow[i] <- mean(snow[!is.na(snow)])
+  temperature_average.snow[i] <- mean(temp[!is.na(temp)])
+  peak_snow.snow[i] <- max(snow[!is.na(snow)])
+  tmp <- weather_data[which(c==1),]
+  peak_snow.date.snow[i] <- tmp$date[which(tmp$snow==peak_snow.snow[i])][1]
+}
+
+barplot(matrix(c(snowfall_average.snow), 
+               nrow=1, byrow=TRUE), ylab="Average snow during winter", cex.axis = 0.8, beside=T,
+        col=c("black"), ylim=c(0,100))
+axis(1,at=seq(1.55,9.5*1.63,length.out = 8), labels=seq(2007,2014,1), cex.axis=0.8)
+box()
+@
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{report-averagesnow}
+\end{center}
+\caption{Length of winter}
+\label{fig:averagesnow}
+\end{figure}
+
+The average temperature is shown in Figure \ref{fig:averagetemp}. \lipsum[6]
+
+<<echo=FALSE, fig=FALSE, label=averagetemp>>=
+barplot(matrix(c(temperature_average.snow), 
+               nrow=1, byrow=TRUE), ylab="Average temperature during winter", cex.axis = 0.8, 
+        beside=T, col=c("black"), ylim=c(-2.5,0))
+axis(1,at=seq(1.55,9.5*1.63,length.out = 8), labels=seq(2007,2014,1), cex.axis=0.8)
+
+# cor(temperature_average.snow, snowfall_average.snow)
+@
+
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{report-averagetemp}
+\end{center}
+\caption{Length of winter}
+\label{fig:averagetemp}
+\end{figure}
+
+\section{Results}
+
+The summary table is shown in Table \ref{summarytable}. 
+\lipsum[7].
+
+<<echo=FALSE, results=tex>>=
+library(xtable)
+print(xtable(summary_table,caption="Dates table",
+label="summarytable"),include.rownames=F)
+@
+
+\lipsum
+
+\section{Conclusion}
+
+\lipsum
+
+% To do: COR table
+
+\cite{Williams_1997} and \cite{Andrews_2007}
+
+\bibliography{sources}
 
 \end{document}

@@ -1,0 +1,9 @@
+mv report.pdf tmp
+rm *.pdf
+mv tmp report.pdf
+rm *.out
+rm *.log
+rm report-concordance.tex
+rm *.aux
+rm report.synctex.gz
+rm report.tex

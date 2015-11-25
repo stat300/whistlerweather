@@ -1,0 +1,51 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Andrews%
+}{%
+Andrews%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+Andrews_2007}
+\APACinsertmetastar {%
+Andrews_2007}%
+\begin{APACrefauthors}%
+Andrews, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+\APACrefbtitle {A Practitioner's Observations on Some Innovative Ideas for
+  Pension Plan Investment} {A practitioner's observations on some innovative
+  ideas for pension plan investment}\ \APACbVolEdTR{}{\BTR{}}.
+\newblock
+\APACaddressInstitution{}{University of Waterloo}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Williams%
+}{%
+Williams%
+}{%
+{\protect \APACyear {1997}}%
+}]{%
+Williams_1997}
+\APACinsertmetastar {%
+Williams_1997}%
+\begin{APACrefauthors}%
+Williams, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1997}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Intergenerational Equity: An Exploration of the ‘Fair
+  Innings’ Argument} {Intergenerational equity: An exploration of the ‘fair
+  innings’ argument}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Health Economics}{6}{2}{117--132}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

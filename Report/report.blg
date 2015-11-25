@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Arch Linux)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: report.aux
+The style file: apacite.bst
+A level-1 auxiliary file: titlepage.aux
+Reallocated glb_str_ptr (elt_size=8) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=8) to 20 items from 10.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated wiz_functions (elt_size=8) to 6000 items from 3000.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated wiz_functions (elt_size=8) to 9000 items from 6000.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Database file #1: sources.bib
+I was expecting a `,' or a `}'---line 2611 of file sources.bib
+ :   
+ :   Editor                   = {Simon Brimblecombe},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+Warning--No address in Andrews_2007
+You've used 2 entries,
+            6951 wiz_defined-function locations,
+            1283 strings with 10995 characters,
+and the built_in function-call counts, 3549 in all, are:
+= -- 428
+> -- 20
+< -- 187
++ -- 178
+- -- 4
+* -- 242
+:= -- 742
+add.period$ -- 9
+call.type$ -- 2
+change.case$ -- 34
+chr.to.int$ -- 0
+cite$ -- 5
+duplicate$ -- 66
+empty$ -- 139
+format.name$ -- 28
+if$ -- 647
+int.to.chr$ -- 0
+int.to.str$ -- 6
+missing$ -- 0
+newline$ -- 47
+num.names$ -- 16
+pop$ -- 65
+preamble$ -- 1
+purify$ -- 8
+quote$ -- 0
+skip$ -- 216
+stack$ -- 0
+substring$ -- 188
+swap$ -- 45
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 160
+warning$ -- 1
+while$ -- 10
+width$ -- 0
+write$ -- 50
+(There was 1 error message)
