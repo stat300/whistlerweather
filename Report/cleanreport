@@ -1,6 +1,6 @@
-mv report.pdf tmp
-rm *.pdf
-mv tmp report.pdf
+# mv report.pdf tmp
+# rm *.pdf
+# mv tmp report.pdf
 rm *.out
 rm *.log
 rm report-concordance.tex
