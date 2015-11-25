@@ -46,5 +46,9 @@ These two approaches produced similar results. Under each approach, we found tha
 
 \section{Introduction}
 
+Our overall goal was to understand the time series shown in Figure 1.
+
+<<echo=FALSE, fig=TRUE
+
 
 \end{document}
