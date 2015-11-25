@@ -2,7 +2,7 @@ library(zoo)
 
 rm(list=ls())
 graphics.off()
-cat("\014")
+#cat("\014")
 setwd("~/Documents/GitHub/whistlerweather/")
 load("Data/weather_data.Rdata")
 load("Data/winter.snow.Rdata")
@@ -10,49 +10,8 @@ load("Data/winter.temp.Rdata")
 
 weather_data.ts <- zoo(weather_data[,3:11], weather_data$date)
 
-analyze_winter <- function(winter_data) {
-  # Determine average of dates
-  season.startdate <- as.POSIXlt(winter_data$start) 
-  season.enddate <- as.POSIXlt(winter_data$end)
-  season.peakdate <- as.POSIXlt(winter_data$peak)
-  
-  for(i in 2:length(season.startdate)) {
-    season.startdate[i]$year <- season.startdate[i]$year - (i-1)
-    season.enddate[i]$year <- season.enddate[i]$year - (i-1)
-    season.peakdate[i]$year <- season.peakdate[i]$year - (i-1)
-  }
-  
-  season.startdate <- as.Date(season.startdate)
-  season.avgstartdate <- mean(season.startdate)
-  season.enddate <- as.Date(season.enddate)
-  season.avgenddate <- mean(season.enddate)
-  season.peakdate <- as.Date(season.peakdate)
-  season.avgpeakdate <- mean(season.peakdate)
-  
-  season.avgstartdate <- as.POSIXlt(rep(season.avgstartdate,
-                             length(season.startdate)))
-  season.avgenddate <- as.POSIXlt(rep(season.avgenddate,
-                              length(season.enddate)))
-  season.avgpeakdate <- as.POSIXlt(rep(season.avgpeakdate,
-                                length(season.peakdate)))
-  
-  for(i in 2:length(season.avgstartdate)) {
-    season.avgstartdate[i]$year <- season.avgstartdate[1]$year + (i-1)
-    season.avgenddate[i]$year <- season.avgenddate[1]$year + (i-1)
-    season.avgpeakdate[i]$year <- season.avgpeakdate[1]$year + (i-1)
-  }
-  
-  season.avgstartdate <- as.Date(season.avgstartdate)
-  season.avgenddate <- as.Date(season.avgenddate)
-  season.avgpeakdate <- as.Date(season.avgpeakdate)
-  
-  list(avgstart=season.avgstartdate, 
-       avgend=season.avgenddate,
-       avgpeak=season.avgpeakdate)
-}
-
-avgdate.snow <- analyze_winter(winter.snow$winter_data)
-avgdate.temp <- analyze_winter(winter.temp$winter_data)
+#avgdate.snow <- analyze_winter(winter.snow$winter_data)
+#avgdate.temp <- analyze_winter(winter.temp$winter_data)
 
 # derive the average time series (for snow on ground)
 season.index <- seq(1,3285-364,365)
@@ -129,7 +88,6 @@ for(i in 1:365) {
 
 imptemp <- as.numeric(as.matrix(season.impall))
 
-save(avgdate.snow,avgdate.temp,
-     impsnow, season.minsnow, season.maxsnow, season.avgsnow,
+save(impsnow, season.minsnow, season.maxsnow, season.avgsnow,
      imptemp, season.mintemp, season.maxtemp, season.avgtemp,
      file="Data/average_ts.Rdata")
