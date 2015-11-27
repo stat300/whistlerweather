@@ -40,12 +40,21 @@ trend.coef <- coef(model)[2]
 names(trend.coef) <- "Date"
 
 #### BASIC PLOTS ####
+mav <- function(x,n=10){filter(x,rep(1/n,n), sides=2)}
 # Basic time series plot
-weather_data.ts <- zoo(weather_data[,c(5,9)], weather_data$date)
+# weather_data.ts <- zoo(weather_data[,c(5,9)], weather_data$date)
+# names(weather_data.ts) = c("Average Temperature", 
+#                            "Snow on ground")
+# p <- xyplot(weather_data.ts,ylab=c("Snow on ground (cm)",
+#                                    "Temperature (celsius)"))
+
+weather_data.ts <- zoo(cbind(mav(imptemp,n=21), 
+                             mav(impsnow,n=14)), weather_data$date)
 names(weather_data.ts) = c("Average Temperature", 
-                           "Snow on ground")
+                          "Snow on ground")
 p <- xyplot(weather_data.ts,ylab=c("Snow on ground (cm)",
-                                   "Temperature (celsius)"))
+  "Temperature (celsius)"))
+p
 
 plot(season.avgsnow, type='l', ylim=c(0,max(season.maxsnow)),
      axes=FALSE, xlab="Date", ylab="Snow on ground (cm)")

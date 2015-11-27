@@ -40,10 +40,10 @@ abline(snowmodel,col='red')
 # abline(model, col='red')
 
 #### average, min, max ####
-plot(season.avgsnow, type='l', ylim=c(0,max(season.maxsnow)),
+plot(mav(season.avgsnow,n=14), type='l', ylim=c(0,max(season.maxsnow)),
      axes=FALSE, xlab="Date", ylab="Snow on ground (cm)")
-lines(season.minsnow, type='l', col='red')
-lines(season.maxsnow, type='l', col='blue')
+lines(mav(season.minsnow,n=14), type='l', col='red')
+lines(mav(season.maxsnow,n=14), type='l', col='blue')
 axis(2)
 box()
 axis(1,at=c(30,120,210,300),labels=c("Feb","May","Aug","Nov"))
@@ -63,8 +63,15 @@ end_winter.snow.date <- weather_data$date[end_winter.snow]
 barplot(matrix(c(t2), 
                nrow=1, byrow=TRUE), ylab="Length of winter", cex.axis = 0.8, beside=T,
         col=c("black"), ylim=c(0,175))
+t3 <- c(t2[1],NA,t2[2],NA,t2[3],NA,
+        t2[4],NA,t2[5],NA,t2[6],NA,
+        t2[6],NA,t2[7],NA,t2[8],NA)
+plot(t2,type='h', lwd=30, lend="square", ylim=c(0,160))
 axis(1,at=seq(1.55,9.5*1.63,length.out = 8), labels=seq(2007,2014,1), cex.axis=0.8)
 box()
+
+plot(t2, type='h', lwd=10)
+lines(t2, type='l')
 
 #### average snow plot ###
 snowfall_average.snow <- numeric(8)
