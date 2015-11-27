@@ -10,26 +10,34 @@ load("~/Documents/GitHub/whistlerweather/Data/average_ts.Rdata")
 load(file="~/Documents/GitHub/whistlerweather/Data/summary_table.Rdata")
 
 #### overview plot ####
-weather_data.ts <- zoo(weather_data[,c(5,9)], weather_data$date)
+# weather_data.ts <- zoo(weather_data[,c(5,9)], weather_data$date)
+# names(weather_data.ts) = c("Average Temperature", 
+#                            "Snow on ground")
+# p <- xyplot(weather_data.ts,ylab=c("Snow on ground (cm)",
+#                                    "Temperature (celsius)"))
+# show(p)
+mav <- function(x,n=10){filter(x,rep(1/n,n), sides=2)}
+weather_data.ts <- zoo(cbind(mav(imptemp,n=21), 
+                             mav(impsnow,n=14)), weather_data$date)
 names(weather_data.ts) = c("Average Temperature", 
                            "Snow on ground")
 p <- xyplot(weather_data.ts,ylab=c("Snow on ground (cm)",
                                    "Temperature (celsius)"))
-show(p)
+p
 
 #### snow on ground trend ####
-pobj <- zoo(weather_data$snow_ground, weather_data$date)
+pobj <- zoo(mav(impsnow,n=14), weather_data$date)
 plot(pobj, xlab="Date", ylab="Snow on ground (cm)")
 x <- as.numeric(weather_data$date)
 snowmodel <- lm(weather_data$snow_ground[1:3285] ~ x)
 abline(snowmodel,col='red')
 
 #### temperature trend ####
-pobj <- zoo(weather_data$mean_temp, weather_data$date)
-plot(pobj, xlab="Date", ylab="Mean temperature during day")
-x <- as.numeric(weather_data$date)
-model <- lm(weather_data$mean_temp[1:3285] ~ x)
-abline(model, col='red')
+# pobj <- zoo(weather_data$mean_temp, weather_data$date)
+# plot(pobj, xlab="Date", ylab="Mean temperature during day")
+# x <- as.numeric(weather_data$date)
+# model <- lm(weather_data$mean_temp[1:3285] ~ x)
+# abline(model, col='red')
 
 #### average, min, max ####
 plot(season.avgsnow, type='l', ylim=c(0,max(season.maxsnow)),

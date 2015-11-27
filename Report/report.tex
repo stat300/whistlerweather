@@ -7,8 +7,9 @@
 \usepackage{apacite}
 \bibliographystyle{apacite}
 
+\usepackage{Sweave}
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+\input{report-concordance}
 
 \include{titlepage}
 
@@ -75,23 +76,6 @@ We needed to perform some imputation for our variables. In particular, the snow 
 
 Our overall goal was to understand the time series shown in Figure \ref{fig:basicts}.
 
-<<echo=FALSE, fig=FALSE, label=basicts>>=
-library(lattice)
-library(latticeExtra)
-library(zoo)
-load("~/Documents/GitHub/whistlerweather/Data/weather_data.Rdata")
-load("~/Documents/GitHub/whistlerweather/Data/average_ts.Rdata")
-load(file="~/Documents/GitHub/whistlerweather/Data/summary_table.Rdata")
-
-mav <- function(x,n=10){filter(x,rep(1/n,n), sides=2)}
-weather_data.ts <- zoo(cbind(mav(imptemp,n=21), 
-                             mav(impsnow,n=14)), weather_data$date)
-names(weather_data.ts) = c("Average Temperature", 
-                           "Snow on ground")
-p <- xyplot(weather_data.ts,ylab=c("Snow on ground (cm)",
-                                   "Temperature (celsius)"))
-p
-@
 
 \begin{figure}[!ht]
 \begin{center}
@@ -115,33 +99,17 @@ This paper establishes an exploratory data analysis on estimating the start and 
 
 The trend for snowfall is shown in Figure \ref{fig:snowtrend}.
 
-<<echo=FALSE, fig=FALSE, label=snowtrend>>=
-pobj <- zoo(mav(impsnow,n=14), weather_data$date)
-plot(pobj, xlab="Date", ylab="Snow on ground (cm)")
-x <- as.numeric(weather_data$date)
-snowmodel <- lm(weather_data$snow_ground[1:3285] ~ x)
-abline(snowmodel,col='red')
-@
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=0.7\textwidth]{report-snowtrend}
 \end{center}
-\caption{Snowfall trend with trend line \textsl{Snow} = \Sexpr{round(coef(snowmodel)[1],4)} -- \Sexpr{round(abs(coef(snowmodel)[2]),4)} $\times$ \textsl{Date}. The slope coefficient is significant with $p$-value $<$ 0.001.}
+\caption{Snowfall trend with trend line \textsl{Snow} = 219.4922 -- 0.0121 $\times$ \textsl{Date}. The slope coefficient is significant with $p$-value $<$ 0.001.}
 \label{fig:snowtrend}
 \end{figure}
 
 The average time series are shown in Figure \ref{fig:averagetsplot}. \lipsum[3]
 
-<<echo=FALSE, fig=FALSE, label=averagetsplot>>=
-plot(mav(season.avgsnow,n=14), type='l', ylim=c(0,max(season.maxsnow)),
-     axes=FALSE, xlab="Date", ylab="Snow on ground (cm)")
-lines(mav(season.minsnow,n=14), type='l', col='red')
-lines(mav(season.maxsnow,n=14), type='l', col='blue')
-axis(2)
-box()
-axis(1,at=c(30,120,210,300),labels=c("Feb","May","Aug","Nov"))
-@
 
 \begin{figure}[!ht]
 \begin{center}
@@ -153,24 +121,6 @@ axis(1,at=c(30,120,210,300),labels=c("Feb","May","Aug","Nov"))
 
 The length of winter is shown in Figure \ref{fig:lengthwinter}. \lipsum[4]
 
-<<echo=FALSE, fig=FALSE, label=lengthwinter>>=
-mav <- function(x,n=5){filter(x,rep(1/n,n), sides=2)}
-
-x <- ts(mav(impsnow, 7))
-y <- diff(which(x>10))
-t2 <- diff(which(y>60))
-
-start_winter.snow <- (which(x>10)[which(y>60)+1]-3)[1:8]
-end_winter.snow <- start_winter.snow + t2
-start_winter.snow.date <- weather_data$date[start_winter.snow]
-end_winter.snow.date <- weather_data$date[end_winter.snow]
-
-barplot(matrix(c(t2), 
-               nrow=1, byrow=TRUE), ylab="Length of winter", cex.axis = 0.8, beside=T,
-        col=c("black"), ylim=c(0,175))
-axis(1,at=seq(1.55,9.5*1.63,length.out = 8), labels=seq(2007,2014,1), cex.axis=0.8)
-box()
-@
 
 \begin{figure}[!ht]
 \begin{center}
@@ -182,30 +132,6 @@ box()
 
 The average snow is shown in Figure \ref{fig:averagesnow}. \lipsum[5]
 
-<<echo=FALSE, fig=FALSE, label=averagesnow>>=
-snowfall_average.snow <- numeric(8)
-peak_snow.snow <- numeric(8)
-peak_snow.date.snow <- as.Date(rep("2000-01-01",8))
-temperature_average.snow <- numeric(8)
-
-for(i in 1:8) {
-  c <-  (weather_data$date > start_winter.snow.date[i]) * 
-    (weather_data$date <= end_winter.snow.date[i])
-  snow <- weather_data$snow_ground[which(c==1)]
-  temp <- weather_data$mean_temp[which(c==1)]
-  snowfall_average.snow[i] <- mean(snow[!is.na(snow)])
-  temperature_average.snow[i] <- mean(temp[!is.na(temp)])
-  peak_snow.snow[i] <- max(snow[!is.na(snow)])
-  tmp <- weather_data[which(c==1),]
-  peak_snow.date.snow[i] <- tmp$date[which(tmp$snow==peak_snow.snow[i])][1]
-}
-
-barplot(matrix(c(snowfall_average.snow), 
-               nrow=1, byrow=TRUE), ylab="Average snow during winter", cex.axis = 0.8, beside=T,
-        col=c("black"), ylim=c(0,100))
-axis(1,at=seq(1.55,9.5*1.63,length.out = 8), labels=seq(2007,2014,1), cex.axis=0.8)
-box()
-@
 
 \begin{figure}[!ht]
 \begin{center}
@@ -217,14 +143,6 @@ box()
 
 The average temperature is shown in Figure \ref{fig:averagetemp}. \lipsum[6]
 
-<<echo=FALSE, fig=FALSE, label=averagetemp>>=
-barplot(matrix(c(temperature_average.snow), 
-               nrow=1, byrow=TRUE), ylab="Average temperature during winter", cex.axis = 0.8, 
-        beside=T, col=c("black"), ylim=c(-2.5,0))
-axis(1,at=seq(1.55,9.5*1.63,length.out = 8), labels=seq(2007,2014,1), cex.axis=0.8)
-
-# cor(temperature_average.snow, snowfall_average.snow)
-@
 
 
 \begin{figure}[!ht]
@@ -240,12 +158,28 @@ axis(1,at=seq(1.55,9.5*1.63,length.out = 8), labels=seq(2007,2014,1), cex.axis=0
 The summary table is shown in Table \ref{summarytable}. 
 \lipsum[7].
 
-<<echo=FALSE, results=tex>>=
-library(xtable)
-print(xtable(summary_table,caption="Dates table",
-label="summarytable"),include.rownames=F)
-@
-
+% latex table generated in R 3.2.2 by xtable 1.8-0 package
+% Fri Nov 27 10:24:35 2015
+\begin{table}[ht]
+\centering
+\begin{tabular}{llllrr}
+  \hline
+Winter & Start & End & Peak & Length & Peak.Amount \\ 
+  \hline
+2006-2007 & Nov 11 & Apr 5 & Jan 19 & 145.00 & 113.00 \\ 
+  2007-2008 & Nov 26 & Apr 13 & Feb 7 & 139.00 & 125.00 \\ 
+  2008-2009 & Dec 18 & Apr 5 & Mar 17 & 108.00 & 75.00 \\ 
+  2009-2010 & Nov 13 & Feb 14 & Jan 2 & 93.00 & 58.00 \\ 
+  2010-2011 & Nov 22 & Apr 7 & Mar 5 & 136.00 & 94.00 \\ 
+  2011-2012 & Nov 19 & Apr 11 & Mar 15 & 144.00 & 68.00 \\ 
+  2012-2013 & Nov 21 & Mar 22 & Jan 9 & 121.00 & 81.00 \\ 
+  2013-2014 & Jan 6 & Apr 3 & Mar 6 & 87.00 & 78.00 \\ 
+  Average & Nov 28 & Mar 29 & Feb 12 & 122.00 & 86.00 \\ 
+   \hline
+\end{tabular}
+\caption{Dates table} 
+\label{summarytable}
+\end{table}
 \lipsum
 
 \section{Conclusion}
