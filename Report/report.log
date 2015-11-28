@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.11.16)  28 NOV 2015 13:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.11.16)  28 NOV 2015 13:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -904,7 +904,7 @@ Underfull \vbox (badness 1762) has occurred while \output is active []
 
  [7]
 (./report.bbl
-Underfull \hbox (badness 3428) in paragraph at lines 11--18
+Underfull \hbox (badness 3428) in paragraph at lines 26--33
 []\T1/aer/m/it/12 Whistler black-comb.  \T1/aer/m/n/12 (2015).  [][]$\T1/aett/m
 /n/12 http :// ww1 [] .whistlerblackcomb [] .com / media / stats /
  []
@@ -925,10 +925,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 214.
 ### simple group (level 1) entered at line 22 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 8494 strings out of 493054
- 118534 string characters out of 6140585
- 319529 words of memory out of 5000000
- 11795 multiletter control sequences out of 15000+600000
+ 8498 strings out of 493054
+ 118576 string characters out of 6140585
+ 319650 words of memory out of 5000000
+ 11798 multiletter control sequences out of 15000+600000
  43942 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,11n,45p,801b,420s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -942,10 +942,10 @@ share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
 r/sfrm1200.pfb>
-Output written on report.pdf (8 pages, 213653 bytes).
+Output written on report.pdf (8 pages, 215220 bytes).
 PDF statistics:
- 193 PDF objects out of 1000 (max. 8388607)
- 162 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
+ 195 PDF objects out of 1000 (max. 8388607)
+ 164 compressed objects within 2 object streams
+ 35 named destinations out of 1000 (max. 500000)
  121 words of extra memory for PDF output out of 10000 (max. 10000000)
 
