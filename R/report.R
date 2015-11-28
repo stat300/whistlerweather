@@ -103,7 +103,7 @@ if(thres>tail(snow_index[!is.na(snow_index)],1)) {
           tail(which(snow_index>thres),1) - 
           tail(which(snow_index>thres)[which(nosnow_period>60)+1]-3,1))
 }
-start_winter <- (which(snow_index>choice_thres)[which(nosnow_period>60)+1]-3)[1:8]
+start_winter <- (which(snow_index>thres)[which(nosnow_period>60)+1]-3)[1:8]
 end_winter <- start_winter + length_winter
 start_winter.date <- weather_data$date[start_winter]
 end_winter.date <- weather_data$date[end_winter]
@@ -192,10 +192,16 @@ summary_table <- data.frame(
   End=c(end.date,average_end.date),
   Length=c(length_winter,mean(length_winter)),
   Peak=c(peak.date,average_peak.date),
-  "Peak Amount"=c(peak_snow,mean(peak_snow)),
-  Average=c(average_snow,mean(average_snow))
+  "Peak Amount"=c(peak_snow,mean(peak_snow))
+  #Average=c(average_snow,mean(average_snow))
 )
 
 summary_table$Length <- round(summary_table$Length)
 summary_table[,6] <- round(summary_table[,6])
-summary_table[,7] <- round(summary_table[,7])
+summary_table$Average_Snow <- c(average_snow, mean(average_snow))
+summary_table$Average_Temp <- c(average_temperature, mean(average_temperature))        
+#summary_table[,7] <- round(summary_table[,7])
+
+save(summary_table, 
+     average_snow, average_temperature, peak_snow,
+     file="~/Documents/GitHub/whistlerweather/Data/summary.Rdata")

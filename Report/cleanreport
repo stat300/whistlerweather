@@ -7,3 +7,5 @@ rm report-concordance.tex
 rm *.aux
 rm report.synctex.gz
 rm report.tex
+rm *.blg
+rm *.bbl
