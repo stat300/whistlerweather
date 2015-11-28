@@ -1,5 +1,6 @@
 \documentclass[12pt,twoside]{article}
 
+\usepackage{amsmath}
 \usepackage[utf8]{inputenc}
 \usepackage{template}
 \usepackage{lipsum}
@@ -72,7 +73,7 @@ Our weather data was obtained from \url{http://climate.weather.gc.ca/}. Data was
 
 \medskip\noindent The variables most relevant to answering our questions were the snow on the ground and the temperature. For temperature, we decided to use the mean temperature during each day, as we felt this is the most robust measure. We didn't account for wind, due to the large number of missing and truncated values present, or for precipitation which we felt wasn't related to our question. 
 
-We needed to perform some imputation for our variables. In particular, the snow on the ground during the summer months was not recorded, so we made the assumption that these was no snow on the ground at this point. Also, during the winter period when snow was not recorded we imputed the snow value from the previous day. Similarly, when the temperature was not recorded we imputed the temperature value from the previous day. During the winter, there was a small amount of missing values for these variables ($<5\%$) so this imputation shouldn't have a large impact on our analysis.
+We needed to perform some imputation for our variables. In particular, the snow on the ground during the summer months was not recorded, so we made the assumption that these was no snow on the ground at this point. Also, during the winter period when snow was not recorded we imputed the snow value from the previous day. Similarly, when the temperature was not recorded we imputed the temperature value from the previous day. During the winter, only a small portion of values were missing for these variables ($<5\%$) so this imputation shouldn't have a large impact on our analysis.
 
 Our overall goal was to understand the time series shown in Figure \ref{fig:basicts}. In this figure we have shown the two-week moving average for the amount of snow on the ground and the three-week moving average for the mean temperature.
 
@@ -98,6 +99,7 @@ p
 \begin{center}
 \includegraphics[width=0.8\textwidth]{report-basicts}
 \end{center}
+\vspace{-5mm}
 \caption{Whistler weather data from 2006 -- 2014}
 \label{fig:basicts}
 \end{figure}
@@ -108,7 +110,9 @@ Our methods are divided into the following sections. First, we analyze whether a
 
 \subsection{Trend}
 
-The trend for snowfall is shown in Figure \ref{fig:snowtrend}.
+Linear regression was used to fit a trend for snowfall, as shown in Figure \ref{fig:snowtrend}. There is evidence that the amount of snow present in Whistler has been decreasing, as the slope coefficient is highly significant with $p$-value $< 0.001$. However, this downward trend is likely exaggerated due to the fact that we only have 9 years of weather data. 
+
+It is natural to wonder whether this downward trend is a result of rising temperatures (global warming). However, this is little evidence from our data to support this claim. For instance, the average temperatures (shown in Figure \ref{fig:basicts}) don't appear to be increasing  over time. When we tried fitting a trend line to these temperatures, the slope was $0.0003$ with $p$-value $>$ 0.01, which makes it difficult to infer causality between the temperature and declining amount of snow.
 
 <<echo=FALSE, fig=FALSE, label=snowtrend>>=
 pobj <- zoo(mav(impsnow,n=14), weather_data$date)
@@ -122,31 +126,50 @@ abline(snowmodel,col='red')
 \begin{center}
 \includegraphics[width=0.7\textwidth]{report-snowtrend}
 \end{center}
-\caption{Snowfall trend with trend line \textsl{Snow} = \Sexpr{round(coef(snowmodel)[1],4)} -- \Sexpr{round(abs(coef(snowmodel)[2]),4)} $\times$ \textsl{Date}. The slope coefficient is significant with $p$-value $<$ 0.001.}
+\vspace{-5mm}
+\caption{Snowfall trend with trend line \textsl{Snow} = \Sexpr{round(coef(snowmodel)[1],4)} -- \Sexpr{round(abs(coef(snowmodel)[2]),4)} $\times$ \textsl{Date}}
 \label{fig:snowtrend}
 \end{figure}
 
-The average time series are shown in Figure \ref{fig:averagetsplot}. \lipsum[3]
+\subsection{Average smoothing}
+
+In order to determine how much snow is present at different points in the year, we averaged the 9 annual time series. One complication was that 2008 and 2012 were leap years. We needed the annual time series to be the same length in order to average them, so we removed February 29th of 2008 and 2012 from our data set.
+
+The resulting minimum, maximum and average amount of snow at each day is shown in Figure \ref{fig:averagetsplot}. We have rearranged the dates to show the period July 1 -- June 30 rather than Jan 1 -- Dec 1. Notice that snowfall usually starts at the beginning of November and melts by the end of April. Since the amount of snow was recorded at the base of the mountain, at an elevation of 657.8 metres, it is quite a bit lower than one would expect at the top of the mountain at an elevation of 2,284 metres \cite{WhistlerBlackcomb}.
 
 <<echo=FALSE, fig=FALSE, label=averagetsplot>>=
-plot(mav(season.avgsnow,n=14), type='l', ylim=c(0,max(season.maxsnow)),
+splitsnow.avg <- c(season.avgsnow[181:365],season.avgsnow[1:180])
+splitsnow.min <- c(season.minsnow[181:365],season.minsnow[1:180])
+splitsnow.max <- c(season.maxsnow[181:365],season.maxsnow[1:180])
+
+plot(mav(splitsnow.avg,n=14), type='l', ylim=c(0,max(season.maxsnow)),
      axes=FALSE, xlab="Date", ylab="Snow on ground (cm)")
-lines(mav(season.minsnow,n=14), type='l', col='red')
-lines(mav(season.maxsnow,n=14), type='l', col='blue')
+lines(mav(splitsnow.min,n=14), type='l', col='red')
+lines(mav(splitsnow.max,n=14), type='l', col='blue')
 axis(2)
 box()
-axis(1,at=c(30,120,210,300),labels=c("Feb","May","Aug","Nov"))
+axis(1,at=c(30,120,210,300),labels=c("Aug 1", "Nov 1", "Feb 1",
+                                     "May 1"))
+                                     legend('top', leg=c("Maximum", "Average", "Minimum"),
+       col=c('blue', 'black', 'red'), lty=c(1,1,1), ncol=3)
 @
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=0.7\textwidth]{report-averagetsplot}
 \end{center}
-\caption{Average, min, max}
+\vspace{-5mm}
+\caption{Average amount of snow present at each day during the year based on period from 2006 -- 2014}
 \label{fig:averagetsplot}
 \end{figure}
 
-The length of winter is shown in Figure \ref{fig:lengthwinter}. \lipsum[4]
+\subsection{Winter length and severity}
+
+One of goals was to compare the winter season of each of the years. Our criteria for the start of winter was based on a snow threshold.
+%
+\begin{align*}
+Winter &= \text{Period when } \text{7 day moving average of} \text{ snow} > X \text{ cm}
+\end{align*}
 
 <<echo=FALSE, fig=FALSE, label=lengthwinter>>=
 mav <- function(x,n=5){filter(x,rep(1/n,n), sides=2)}

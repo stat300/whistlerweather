@@ -15,45 +15,45 @@ Reallocated singl_function (elt_size=8) to 100 items from 50.
 Database file #1: sources.bib
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
 Warning--No address in Andrews_2007
-You've used 2 entries,
+You've used 3 entries,
             6951 wiz_defined-function locations,
-            1283 strings with 10995 characters,
-and the built_in function-call counts, 3549 in all, are:
-= -- 428
+            1288 strings with 11106 characters,
+and the built_in function-call counts, 4664 in all, are:
+= -- 588
 > -- 20
-< -- 187
-+ -- 178
+< -- 214
++ -- 202
 - -- 4
-* -- 242
-:= -- 742
-add.period$ -- 9
-call.type$ -- 2
-change.case$ -- 34
+* -- 296
+:= -- 884
+add.period$ -- 13
+call.type$ -- 3
+change.case$ -- 50
 chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 66
-empty$ -- 139
+cite$ -- 7
+duplicate$ -- 86
+empty$ -- 216
 format.name$ -- 28
-if$ -- 647
+if$ -- 911
 int.to.chr$ -- 0
-int.to.str$ -- 6
+int.to.str$ -- 9
 missing$ -- 0
-newline$ -- 47
+newline$ -- 62
 num.names$ -- 16
-pop$ -- 65
+pop$ -- 135
 preamble$ -- 1
-purify$ -- 8
+purify$ -- 11
 quote$ -- 0
-skip$ -- 216
+skip$ -- 286
 stack$ -- 0
-substring$ -- 188
-swap$ -- 45
-text.length$ -- 4
+substring$ -- 214
+swap$ -- 55
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 160
+type$ -- 264
 warning$ -- 1
-while$ -- 10
+while$ -- 12
 width$ -- 0
-write$ -- 50
+write$ -- 69
 (There was 1 warning)
