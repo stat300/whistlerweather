@@ -126,11 +126,30 @@ The resulting minimum, maximum and average amount of snow at each day is shown i
 
 \subsection{Winter length and severity}
 
-One of goals was to compare the winter season of each of the years. Our criteria for the start of winter was based on a snow threshold.
+One of goals was to compare the winter season of each of the years. Our criteria for the start of winter was based on a snow threshold as shown in the equation below.
 %
 \begin{align*}
-Winter &= \text{Period when } \text{7 day moving average of} \text{ snow} > X \text{ cm}
+Winter &= \text{Period when } \text{7 day moving average of} \text{ snow} > \textsl{Threshold} \text{ (cm)}
 \end{align*}
+
+\medskip\noindent We tried varying the threshold over different values. Regardless of the threshold, the results were quite similar as demonstrated in Table \ref{tab:robustcheck}. The remainder of our report is based on a threshold of 15 cm.
+
+% latex table generated in R 3.2.2 by xtable 1.8-0 package
+% Fri Nov 27 17:11:34 2015
+\begin{table}[ht]
+\centering
+\begin{tabular}{c|rrrrrrrr}
+  \hline
+Threshold (cm) & 06-07 & 07-08 & 08-09 & 09-10 & 10-11 & 11-12 & 12-13 & 13-14 \\ 
+  \hline
+10 & 145 & 138 & 108 & 93 & 136 & 143 & 121 & 87 \\ 
+  15 & 137 & 135 & 103 & 85 & 128 & 136 & 99 & 87 \\ 
+  20 & 134 & 132 & 101 & 78 & 125 & 126 & 94 & 55 \\ 
+   \hline
+\end{tabular}
+\caption{Length of winter under a variety of thresholds} 
+\label{tab:robustcheck}
+\end{table}
 
 
 \begin{figure}[!ht]
@@ -170,7 +189,7 @@ The summary table is shown in Table \ref{summarytable}.
 \lipsum[7].
 
 % latex table generated in R 3.2.2 by xtable 1.8-0 package
-% Fri Nov 27 16:18:47 2015
+% Fri Nov 27 17:11:34 2015
 \begin{table}[ht]
 \centering
 \begin{tabular}{llllrr}
