@@ -1,0 +1,35 @@
+\usecolortheme{orchid}
+\usepackage{etoolbox}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{blue(munsell)}{rgb}{0.0, 0.4, 0.55}
+
+\addtobeamertemplate{headline}{}
+{%
+\vspace{2mm}
+  \begin{beamercolorbox}[ignorebg,ht=2.25ex,dp=3.75ex]{section in head/foot}%
+    \insertsectionnavigationhorizontal{\paperwidth}{}{\hfill\insertpagenumber\hspace{5mm}}
+  \end{beamercolorbox}%
+}
+
+\setbeamertemplate{navigation symbols}{} 
+
+\setbeamercolor*{palette primary}{use=structure,fg=blue(munsell),bg=white}
+\setbeamercolor*{palette secondary}{use=structure,fg=black,bg=white}
+\setbeamercolor*{palette tertiary}{use=structure,fg=black,bg=white}
+\setbeamercolor*{palette quaternary}{fg=black,bg=white}
+
+\setbeamercolor*{sidebar}{use=structure,bg=structure.fg}
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\setbeamercolor*{section in toc}{fg=blue(munsell)}
+\setbeamercolor*{subsection in toc}{fg=blue(munsell)}
