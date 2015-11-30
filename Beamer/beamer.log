@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.11.16)  29 NOV 2015 22:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.11.16)  30 NOV 2015 08:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1297,81 +1297,80 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-]
-LaTeX Font Info:    Try loading font information for U+msa on input line 36.
+] (./beamer.toc) [2
 
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+]
+[3
+
+]
+LaTeX Font Info:    Try loading font information for U+msa on input line 74.
+ (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 36.
+LaTeX Font Info:    Try loading font information for U+msb on input line 74.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 36.
+line 74.
 
 (/usr/share/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
-) [2
-
-]
-<report-basicts.pdf, id=59, 433.62pt x 433.62pt>
+)
+<report-basicts.pdf, id=85, 433.62pt x 433.62pt>
 File: report-basicts.pdf Graphic file (type pdf)
  <use report-basicts.pdf>
-Package pdftex.def Info: report-basicts.pdf used on input line 68.
+Package pdftex.def Info: report-basicts.pdf used on input line 74.
 (pdftex.def)             Requested size: 221.24803pt x 221.24913pt.
 
-Overfull \vbox (19.29408pt too high) detected at line 68
+Overfull \vbox (23.31151pt too high) detected at line 74
  []
 
-[3
+[4
 
- <./report-basicts.pdf>] [4
+ <./report-basicts.pdf>] [5
 
 ]
-<report-snowtrend.pdf, id=81, 433.62pt x 433.62pt>
+<report-snowtrend.pdf, id=109, 433.62pt x 433.62pt>
 File: report-snowtrend.pdf Graphic file (type pdf)
  <use report-snowtrend.pdf>
-Package pdftex.def Info: report-snowtrend.pdf used on input line 117.
-(pdftex.def)             Requested size: 221.24803pt x 221.24913pt.
+Package pdftex.def Info: report-snowtrend.pdf used on input line 126.
+(pdftex.def)             Requested size: 207.41924pt x 207.42065pt.
 
-Overfull \vbox (19.31151pt too high) detected at line 117
- []
-
-[5
-
- <./report-snowtrend.pdf>]
-<report-averagetsplot.pdf, id=99, 433.62pt x 433.62pt>
-File: report-averagetsplot.pdf Graphic file (type pdf)
-
-<use report-averagetsplot.pdf>
-Package pdftex.def Info: report-averagetsplot.pdf used on input line 147.
-(pdftex.def)             Requested size: 221.24803pt x 221.24913pt.
-
-Overfull \vbox (33.25595pt too high) detected at line 147
+Overfull \vbox (5.4656pt too high) detected at line 126
  []
 
 [6
 
- <./report-averagetsplot.pdf>] [7
+ <./report-snowtrend.pdf>]
+<report-averagetsplot.pdf, id=124, 433.62pt x 433.62pt>
+File: report-averagetsplot.pdf Graphic file (type pdf)
 
-]
-<report-barplots.pdf, id=124, 505.89pt x 289.08pt>
-File: report-barplots.pdf Graphic file (type pdf)
- <use report-barplots.pdf>
-Package pdftex.def Info: report-barplots.pdf used on input line 189.
-(pdftex.def)             Requested size: 307.28987pt x 175.59749pt.
+<use report-averagetsplot.pdf>
+Package pdftex.def Info: report-averagetsplot.pdf used on input line 164.
+(pdftex.def)             Requested size: 221.24803pt x 221.24913pt.
 
-Overfull \vbox (1.28107pt too high) detected at line 189
+Overfull \vbox (19.29408pt too high) detected at line 164
  []
 
-[8
+[7
 
- <./report-barplots.pdf>] [9
+ <./report-averagetsplot.pdf>] [8
 
-] [10
+]
+<report-barplots.pdf, id=145, 505.89pt x 289.08pt>
+File: report-barplots.pdf Graphic file (type pdf)
+ <use report-barplots.pdf>
+Package pdftex.def Info: report-barplots.pdf used on input line 226.
+(pdftex.def)             Requested size: 307.28987pt x 175.59749pt.
+
+[9
+
+ <./report-barplots.pdf>] [10
+
+] [11
 
 ]
 \tf@nav=\write6
@@ -1383,28 +1382,28 @@ Overfull \vbox (1.28107pt too high) detected at line 189
 \tf@snm=\write8
 \openout8 = `beamer.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 235.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 235.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 272.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 272.
  (./beamer.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 235.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 235.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 272.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 272.
 Package rerunfilecheck Info: File `beamer.out' has not changed.
-(rerunfilecheck)             Checksum: A5B46FE26BA8CA8A8124823A7688BCBA;185.
+(rerunfilecheck)             Checksum: 59FE42CF2C9989DB63D46B68B45B50EC;396.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 235.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 272.
  ) 
 Here is how much of TeX's memory you used:
- 20539 strings out of 493054
- 397522 string characters out of 6140585
- 476252 words of memory out of 5000000
- 23544 multiletter control sequences out of 15000+600000
+ 20580 strings out of 493054
+ 398403 string characters out of 6140585
+ 478201 words of memory out of 5000000
+ 23578 multiletter control sequences out of 15000+600000
  14190 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,15n,63p,933b,689s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,15n,63p,933b,735s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-dist/fonts/type1/publi
@@ -1413,10 +1412,10 @@ mss9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></us
 r/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts
 /type1/public/amsfonts/symbols/msam7.pfb>
-Output written on beamer.pdf (10 pages, 175649 bytes).
+Output written on beamer.pdf (11 pages, 177569 bytes).
 PDF statistics:
- 197 PDF objects out of 1000 (max. 8388607)
- 156 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
- 95 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 213 PDF objects out of 1000 (max. 8388607)
+ 172 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 119 words of extra memory for PDF output out of 10000 (max. 10000000)
 

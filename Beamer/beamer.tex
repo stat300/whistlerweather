@@ -17,13 +17,15 @@ Stat 300 Project, Fall 2015}
 \titlepage
 \end{frame}
 
-\begin{frame}{Introduction}
+\begin{frame}{Outline}
 
-\section{Introduction}
+\color{black}{
+\tableofcontents}
+\end{frame}
 
-\begin{itemize}
-\item Time series data from 2006 -- 2014, Whistler (BC)
-\item Objectives
+\begin{frame}{Objectives}
+
+\section{Background}
 
 \begin{enumerate}
 \item Determine start, peak and end of winter season
@@ -31,23 +33,27 @@ Stat 300 Project, Fall 2015}
 \item Determine trends and odd behaviors in data
 \end{enumerate}
 
-\end{itemize}
-
 \end{frame}
 
-\begin{frame}{Data}
+\begin{frame}{Background}
 
-\section{Data}
+%\section{Data}
 
 \begin{columns}
 
-\column{0.3\textwidth}
+\column{0.32\textwidth}
 
 {\small
 \begin{itemize}
+\item Whistler Blackcomb
+\begin{itemize} 
+\item Dependent on snow
+\end{itemize}
+\item Data
+\begin{itemize}
 \item Elevation: 650m
 \item Precipitation and wind not used
-\item 2009--2010 had low snowfall (Olympics)
+\end{itemize}
 \end{itemize}
 }
 
@@ -59,7 +65,7 @@ Stat 300 Project, Fall 2015}
 \begin{figure}
 \includegraphics[width=0.9\textwidth]{report-basicts}
 \vspace{-2mm}
-\caption{{\small Whistler weather data from 2006--2014}}
+\caption{{\footnotesize Whistler temperature and snowfall from 2006--2014}}
 \vspace{10mm}
 \end{figure}
 
@@ -73,20 +79,22 @@ Stat 300 Project, Fall 2015}
 
 \begin{itemize}
 
+\item Exploratory
 \item Statistical techniques 
 \begin{enumerate}
-\item Regression: used to determine if there is trend in snowfall data
-\item Time series techniques: used to compare different winter seasons
-\item Correlation: used to examine relationship between temperature and snowfall
+\item Regression: trend
+\item Time series techniques: compare different winter seasons
+\item Correlation: relationship between temperature and snowfall
 \end{enumerate}
 
-\item Winter was characterized as period when snowfall was greater than 15 cm
-\item One week moving average used to negate fluctuations
+\item Winter: period when one week moving average for snowfall was greater than 15 cm 
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}{Snowfall trend}
+
+\subsection{Trend}
 
 \begin{columns}
 
@@ -94,15 +102,16 @@ Stat 300 Project, Fall 2015}
 
 {\small
 \begin{itemize}
+\item Linear regression
 \item $p$-value $<$ 0.001
-\item Using trend for projection wouldn't be accurate (recent upward trend in peak snowfall)
+%\item Using trend for projection wouldn't be accurate (recent upward trend in peak snowfall)
 \item Temperature trend is not as noticeable
 \end{itemize}
 }
 
 \vspace{30mm}
 
-\column{0.8\textwidth}
+\column{0.75\textwidth}
 
 \vspace{-18mm}
 \begin{figure}
@@ -118,19 +127,27 @@ Stat 300 Project, Fall 2015}
 
 \begin{frame}{Average smoothing}
 
+\subsection{Average smoothing}
+
 \begin{columns}
 
-\column{0.3\textwidth}
+\column{0.32\textwidth}
 
 {\small
 \begin{itemize}
-\item Period shown in July 1 -- June 30
-\item Can get snow any month other than July, August
-\item Sometimes no snow until December and all gone by mid--April
+\item Period shown is July 1 -- June 30
+\item Maximum
+\begin{itemize}
+\item Snow all months except July, August
+\end{itemize}
+\item Minimum
+\begin{itemize}
+\item Snow from December to mid--April
+\end{itemize}
 \end{itemize}
 }
 
-\vspace{30mm}
+\vspace{10mm}
 
 \column{0.8\textwidth}
 
@@ -148,9 +165,24 @@ Stat 300 Project, Fall 2015}
 
 \begin{frame}{Length of winter}
 
+\subsection{Length of winter}
+
+\begin{columns}
+
+\column{0.4\textwidth}
 \begin{itemize}
-\item 2009--2010 ended earliest and 2013--2014 started latest
+\item Longest: 2006-2007
+\item Shortest: 2009--2010
 \end{itemize}
+
+\column{0.5\textwidth}
+
+\begin{itemize}
+\item Earliest start: 2013--2014
+\item Earliest end: 2009--2010
+\end{itemize}
+
+\end{columns}
 
 \begin{table}[ht]
 \begin{tabular}{c c c c c}
@@ -159,11 +191,11 @@ Winter & Start Date & End Date & Length & Peak Date \\ \hline
 2006--2007 & Nov 18 & Apr 4 & 137 days & Jan 19  \\
 2007--2008 & Nov 27 & Apr 11 & 135 days & Feb 7 \\
 2008--2009 & Dec 22 & Apr 4 & 103 days & Mar 17 \\
-2009--2010 & Nov 14 & Feb 7 & 85 days & Jan 2 \\
+2009--2010 & Nov 14 & \color{black}{Feb 7} & 85 days & Jan 2 \\
 2010--2011 & Nov 24 & Apr 1 & 128 days & Mar 5 \\
 2011--2012 & Nov 24 & Apr 9 & 136 days & Mar 15 \\
 2012--2013 & Dec 7 & Mar 16 & 99 days & Jan 9 \\
-2013--2014 & Jan 7 & Apr 4 & 87 days & Mar 6 \\ \hline
+2013--2014 & \color{black}{Jan 7} & Apr 4 & 87 days & Mar 6 \\ \hline
 Average & Dec 3 & Mar 26 & 114 days & Feb 12 \\ \hline
 \end{tabular}
 \caption{Dates of winter seasons based of a threshold of 15 cm of snow}
@@ -173,17 +205,22 @@ Average & Dec 3 & Mar 26 & 114 days & Feb 12 \\ \hline
 
 \begin{frame}{Severity of winter}
 
-\vspace{5mm}
+\subsection{Severity of winter}
+
 \begin{itemize}
-\item Bars represent average amount of snow over winter season
-\item 2009--2010 winter had the least average snow and peak snow
+%\item Bars represent average amount of snow over winter season
+\item 2009--2010 winter was least severe
+\begin{itemize}
+\item Peak snowfall: 58 cm
+\item Average snowfall: 30 cm
+\end{itemize}
 \end{itemize}
 
 \begin{figure}
 \vspace{-12mm}
 \includegraphics[width=1.0\textwidth]{report-barplots}
 \vspace{-5mm}
-\caption{{\footnotesize Amount of snow present at each day during the year}}
+\caption{{\footnotesize Average amount of snow over each winter season}}
 \end{figure}
 
 \end{frame}
@@ -191,8 +228,8 @@ Average & Dec 3 & Mar 26 & 114 days & Feb 12 \\ \hline
 \begin{frame}{Correlation}
 
 \begin{itemize}
-\item Average snow and temperature have correlation of --0.15
-\item Peak and average snow have correlation of 0.96
+\item Average snow and temperature: --0.15
+\item Peak and average snow: 0.96
 \end{itemize}
 
 \begin{table}[ht]
@@ -221,11 +258,11 @@ Average & 86 cm & 50 cm & -0.98 $^{\circ}$c \\ \hline
 \begin{itemize}
 \item Winter season starts Dec 3, ends Mar 26
 \item Average snow present is 50 cm 
-\item Snowfall trending downwards at 4.42 cm per year
+\item Snowfall downward trending
 \item 2009--2010 was least severe winter 
 \item Limitations
 \begin{itemize}
-\item No projections 
+\item No projections -- predictive ARIMA model could be used
 \item Didn't account for wind, precipitation
 \end{itemize}
 \end{itemize}
