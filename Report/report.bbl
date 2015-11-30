@@ -1,14 +1,14 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
-\APACcitebtitle {GitHub repository}}{%
-\APACcitebtitle {GitHub repository}}{%
+\APACcitebtitle {Data and code}}{%
+\APACcitebtitle {Data and code}}{%
 {\protect \APACyear {2015}}%
 }]{%
 Github}
 \APACinsertmetastar {%
 Github}%
-\APACrefbtitle {GitHub repository.} {Github repository.}
+\APACrefbtitle {Data and code.} {Data and code.}
 \newblock
 \APACrefYearMonthDay{2015}{}{}.
 \newblock

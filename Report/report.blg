@@ -16,15 +16,15 @@ Database file #1: sources.bib
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
 You've used 2 entries,
             6951 wiz_defined-function locations,
-            1278 strings with 10852 characters,
-and the built_in function-call counts, 2272 in all, are:
-= -- 323
+            1278 strings with 10848 characters,
+and the built_in function-call counts, 2235 in all, are:
+= -- 319
 > -- 0
-< -- 53
-+ -- 47
+< -- 49
++ -- 43
 - -- 0
-* -- 108
-:= -- 313
+* -- 103
+:= -- 300
 add.period$ -- 8
 call.type$ -- 2
 change.case$ -- 32
@@ -33,7 +33,7 @@ cite$ -- 4
 duplicate$ -- 40
 empty$ -- 155
 format.name$ -- 0
-if$ -- 532
+if$ -- 528
 int.to.chr$ -- 0
 int.to.str$ -- 6
 missing$ -- 0
@@ -43,9 +43,9 @@ pop$ -- 140
 preamble$ -- 1
 purify$ -- 6
 quote$ -- 0
-skip$ -- 141
+skip$ -- 142
 stack$ -- 0
-substring$ -- 51
+substring$ -- 47
 swap$ -- 20
 text.length$ -- 4
 text.prefix$ -- 0
