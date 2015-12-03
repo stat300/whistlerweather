@@ -5,12 +5,12 @@
 \usepackage{multicol}
 \usepackage{gensymb}
 
-
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \title{Analysis of whistler weather data}
 \author{Benjamin, Ethan and Nathan \\ \vspace{1mm}
-Stat 300 Project, Fall 2015}
+Stat 300 Project}
 \date{December 2, 2015}
 
 \begin{frame}
@@ -178,7 +178,7 @@ Stat 300 Project, Fall 2015}
 \column{0.5\textwidth}
 
 \begin{itemize}
-\item Earliest start: 2013--2014
+\item Latest start: 2013--2014
 \item Earliest end: 2009--2010
 \end{itemize}
 
@@ -236,15 +236,15 @@ Average & Dec 3 & Mar 26 & 114 days & Feb 12 \\ \hline
 \begin{tabular}{c c c c}
 \hline
 Winter & Peak snow & Average snow & Average temperature \\ \hline
-2006--2007 & 113 cm & 72 cm & -0.56 $^{\circ}$c \\
-2007--2008 & 125 cm & 73 cm & -1.23 $^{\circ}$c \\
-2008--2009 & 75 cm & 48 cm & -1.80 $^{\circ}$c \\
-2009--2010 & 58 cm & 30 cm & -1.17 $^{\circ}$c \\
-2010--2011 & 94 cm & 59 cm & -1.31 $^{\circ}$c \\
-2011--2012 & 68 cm & 38 cm & -0.37 $^{\circ}$c \\
-2012--2013 & 81 cm & 41 cm & -1.26 $^{\circ}$c \\
-2013--2014 & 78 cm & 37 cm & -0.17 $^{\circ}$c \\ \hline
-Average & 86 cm & 50 cm & -0.98 $^{\circ}$c \\ \hline
+2006--2007 & 113 cm & 72 cm & -0.56 $^{\circ}$C \\
+2007--2008 & 125 cm & 73 cm & -1.23 $^{\circ}$C \\
+2008--2009 & 75 cm & 48 cm & -1.80 $^{\circ}$C \\
+2009--2010 & 58 cm & 30 cm & -1.17 $^{\circ}$C \\
+2010--2011 & 94 cm & 59 cm & -1.31 $^{\circ}$C \\
+2011--2012 & 68 cm & 38 cm & -0.37 $^{\circ}$C \\
+2012--2013 & 81 cm & 41 cm & -1.26 $^{\circ}$C \\
+2013--2014 & 78 cm & 37 cm & -0.17 $^{\circ}$C \\ \hline
+Average & 86 cm & 50 cm & -0.98 $^{\circ}$C \\ \hline
 \end{tabular}
 \caption{Snow and temperature measurements for winter seasons}
 \end{table}
